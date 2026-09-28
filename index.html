@@ -136,6 +136,7 @@
   .arrow:hover:not(:disabled) { background: #e8e8ed; }
   .arrow:disabled { opacity: .35; cursor: default; }
   .arrow svg { width: 18px; height: 18px; }
+  .arrows[hidden] { display: none; }
   @media (hover: none) { .arrows { display: none; } }
 
   /* Horizontal rows: full-bleed scroll, content aligned to the page column. */
@@ -529,6 +530,7 @@
         const max = row.scrollWidth - row.clientWidth;
         back.disabled = row.scrollLeft <= 2;
         forward.disabled = row.scrollLeft >= max - 2;
+        group.hidden = max <= 2; // nothing to scroll: no arrows
         if (focused === forward && forward.disabled) back.focus();
         if (focused === back && back.disabled) forward.focus();
       };
